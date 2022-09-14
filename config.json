@@ -1,0 +1,166 @@
+{
+   "agent":{
+      "metrics_collection_interval":5,
+      "logfile":"c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log"
+   },
+   "metrics":{
+      "namespace": "sqlserver",
+      "metrics_collected":{
+         "LogicalDisk":{
+            "measurement":[
+              {
+                 "name":"% Free Space",
+                 "rename":"FreeStorageSpaceInPercent",
+                 "unit":"Percent"
+              },
+              {
+                 "name":"Free Megabytes",
+                 "rename":"FreeStorageSpaceInMB",
+                 "unit":"Megabytes"
+              }
+            ],
+            "resources":[
+               "C:",
+               "D:",
+               "E:",
+               "F:",
+               "G:",
+               "H:",
+               "I:",
+               "S:",
+               "T:",
+               "U:",
+               "X:",
+               "V:",
+               "W:"
+            ]
+         },
+         "Processor":{
+            "measurement":[
+               {
+                  "name":"% Processor Time",
+                  "rename":"CPUUtilization",
+                  "unit":"Percent"
+               }
+            ],
+            "resources":[
+               "_Total"
+            ]
+         },
+         "Memory":{
+            "metrics_collection_interval":5,
+            "measurement":[
+              {
+                 "name":"Available MBytes",
+                 "rename":"FreeableMemory",
+                 "unit":"Bytes"
+              },
+              {
+                 "name":"Pages/Sec",
+                 "rename":"PagesRetreivedPerSecFromDisk",
+                 "unit":"Count/Second"
+              }
+            ]
+         },
+         "SQLServer:Database Replica": {
+                "measurement": [
+                    "Transaction Delay",
+		    "Total Log requiring undo",
+		    "Redone Bytes/sec",
+		    "Redo Bytes Remaining",
+		    "Recovery Queue",
+		    "Mirrored Write Transaction/sec",
+		    "Log Send Queue",
+		    "Log remaining for undo",
+                    "File Bytes Received/sec"
+                ], "resources": [
+                    "_Total"
+                ],
+                
+                "metrics_collection_interval": 60
+            },
+
+	  "SQLServer:Locks": {
+                "measurement": [
+                    "Number of Deadlocks/sec"
+                ], "resources": [
+                    "_Total"
+                ],
+                
+                "metrics_collection_interval": 60
+            },
+
+         "SQLServer:Access Methods":{
+            "measurement":[
+              "Page Splits/sec",
+              "Forwarded Records/sec",
+              "Full scans/sec"
+            ]
+         },
+         "SQLServer:General Statistics":{
+            "measurement":[
+              "Processes blocked",
+              {
+                 "name":"User Connections",
+                 "rename":"DatabaseConnections",
+                 "unit":"Count"
+              }
+            ]
+         },
+         "SQLServer:Buffer Manager":{
+            "measurement":[
+              "Page life expectancy",
+              "Page writes/sec",
+              "Page reads/sec",
+              "Buffer cache hit ratio",
+              "Checkpoint pages/sec"
+            ]
+         },
+         "SQLServer:Memory Manager":{
+            "measurement":[
+              "Memory Grants Pending"
+            ]
+         }
+      }
+   },
+   "logs": {
+     "logs_collected": {
+       "files": {
+         "collect_list": [
+           {
+             "file_path": "c:\\Program Files\\Microsoft SQL Server\\MSSQL13.MSSQLSERVER\\MSSQL\\Log\\ERRORLOG",
+             "log_group_name": "sql-error.log",
+             "timezone": "UTC",
+             "log_stream_name":"sql_error_log_stream",
+             "timestamp_format":"%H:%M:%S %y %b %-d"
+           }
+         ]
+       },
+       "windows_events": {
+         "collect_list": [
+           {
+             "event_name": "System",
+             "event_levels": [
+               "INFORMATION",
+               "ERROR"
+             ],
+             "log_group_name": "System",
+             "log_stream_name": "System",
+             "event_format": "xml"
+           },
+           {
+             "event_name": "Application",
+             "event_levels": [
+               "WARNING",
+               "ERROR"
+             ],
+             "log_group_name": "Application",
+             "log_stream_name": "Application",
+             "event_format": "xml"
+           }
+         ]
+       }
+     },
+     "log_stream_name": "windows_log_stream"
+   }
+}
