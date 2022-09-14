@@ -1,16 +1,3 @@
-# create folder 
-mkdir $env:USERPROFILE/Desktop/
-
-# to download 
-Invoke-WebRequest -Uri https://s3.amazonaws.com/amazoncloudwatch-agent/windows/amd64/latest/amazon-cloudwatch-agent.msi -OutFile $env:USERPROFILE\Desktop\amazon-cloudwatch-agent.msi
-
-
-# To install
-msiexec /i $env:USERPROFILE\Desktop\amazon-cloudwatch-agent.msi
-
-# To test the installation 
-Test-Path -Path $env:USERPROFILE\Desktop\amazon-cloudwatch-agent.msi
-
 # remove old config file 
 rm  'C:\Program Files\Amazon\AmazonCloudWatchAgent\config.json'
 
